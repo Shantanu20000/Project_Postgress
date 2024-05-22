@@ -58,7 +58,8 @@ In the root directory of the cloned repository, create a Dockerfile
 
 $ cd Budget-App
 
-$ sudo vim Dockerfile
+$ sudo cat > Dockerfile
+
 FROM ruby:3.1.2
 
 ENV RAILS_ENV=development
@@ -116,6 +117,7 @@ volumes:
 
 
 # Step 5: Update database.yml
+
 Update the config/database.yml
 
 $ cd Budget-App/config
@@ -131,30 +133,50 @@ $ sudo vim database.yml
 
 # For Rails application to match the PostgreSQL service configuration in the docker-compose.yml file:
 
-$ sudo vim database.yml
+$ sudo cat > database.yml
+[
 default: &default
+
   adapter: postgresql
+  
   encoding: unicode
+  
   host: db
+  
   username: postgres
+  
   password: password
+  
   pool: 5
 
+
 development:
+
   <<: *default
+
   database: budget_app_development
 
+
 test:
+
   <<: *default
+  
   database: budget_app_test
 
+
 production:
+
   <<: *default
+  
   database: budget_app_production
+  
   username: budget_app
+  
   password: <%= ENV['BUDGET_APP_DATABASE_PASSWORD'] %>
+]
 
 # Step 6: Build and Run the Containers
+
 Build and run the containers using Docker Compose:
 
 $ Sudo docker-compose up –build
@@ -162,9 +184,9 @@ $ Sudo docker-compose up –build
 # Step 7: Open dublicate of cloudshell
 
 # Step 8: Set Up the Database
+
 Once the containers are up and running, you need to create and
 migrate the database. Open a new terminal and run the following
-command:
 
 $ docker-compose run web rake db:create db:migrate
 
