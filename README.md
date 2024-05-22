@@ -59,7 +59,7 @@ In the root directory of the cloned repository, create a Dockerfile
 $ cd Budget-App
 
 $ sudo vim Dockerfile
-# Use an official Ruby runtime as a parent image
+{ # Use an official Ruby runtime as a parent image
 FROM ruby:3.1.2
 # Set environment variables
 ENV RAILS_ENV=development
@@ -80,7 +80,7 @@ COPY . /app
 # Expose port 3000 to the Docker host
 EXPOSE 3000
 # Start the main process
-CMD ["rails", "server", "-b", "0.0.0.0"]
+CMD ["rails", "server", "-b", "0.0.0.0"] }
 
 # Step 4: Create the Docker Compose File
 In the same root directory, create a docker-compose.yml
