@@ -31,7 +31,8 @@ Commands for installing docker engine & docker-compose :–
 
 # 3 Set up the stable repository:
 
-    $ sudo add-apt-repository \ "deb [arch=amd64] https://download.docker.com/linux/ubuntu \ $(lsb_release -cs) \ stable"
+    $ sudo add-apt-repository \
+    "deb [arch=amd64] https://download.docker.com/linux/ubuntu  $(lsb_release -cs)  stable"
 
 # 4 Install Docker Engine:
 
