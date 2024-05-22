@@ -3,11 +3,16 @@
   Source code - evans22j /Budget-App - GitHub Repo
 
 # Step 1: Install Docker and Docker Compose
+
 First, ensure that Docker and Docker Compose are installed on your system.
 Docker: You can install Docker from the official Docker website.
+
 https://docs.docker.com/engine/install/ubuntu
+
 Docker Compose: You can install Docker Compose from the official Docker Compose website.-
+
   https://docs.docker.com/engine/install/ubuntu/#install-using-the-repository
+  
 Commands for installing docker engine & docker-compose :–
 
 # 1 Update the apt package index and install packages to allow apt to use a repository over HTTPS:
@@ -21,6 +26,7 @@ curl \
 software-properties-common
 
 # 2 Add Docker’s official GPG key :-
+
 curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add –
 
 # 3 Set up the stable repository:
@@ -90,7 +96,9 @@ $ cd Budget-App
 $ sudo cat > docker-compose.yml
 
 version: '3.8'
+
 services:
+
   db:
     image: postgres:13
     volumes:
@@ -110,9 +118,11 @@ services:
     depends_on:
       - db
     environment:
-      DATABASE_URL: postgres://postgres:password@db:5432/budget_app_development
+        DATABASE_URL: postgres://postgres:password@db:5432/budget_app_development
+
 
 volumes:
+
   postgres_data:
 
 
