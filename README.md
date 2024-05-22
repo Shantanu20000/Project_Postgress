@@ -100,24 +100,39 @@ version: '3.8'
 services:
 
   db:
+  
     image: postgres:13
+    
     volumes:
+    
       - postgres_data:/var/lib/postgresql/data
     environment:
+    
       POSTGRES_DB: budget_app_development
+      
       POSTGRES_USER: postgres
+      
       POSTGRES_PASSWORD: password
 
   web:
+  
     build: .
+    
     command: bash -c "rm -f tmp/pids/server.pid && bundle exec rails s -b '0.0.0.0'"
+    
     volumes:
+    
       - .:/app
+      
     ports:
+    
       - "3000:3000"
+      
     depends_on:
+    
       - db
     environment:
+    
         DATABASE_URL: postgres://postgres:password@db:5432/budget_app_development
 
 
