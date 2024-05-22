@@ -10,7 +10,7 @@ Docker Compose: You can install Docker Compose from the official Docker Compose 
   https://docs.docker.com/engine/install/ubuntu/#install-using-the-repository
 Commands for installing docker engine & docker-compose :–
 
-1 Update the apt package index and install packages to allow apt to use a repository over HTTPS:
+# 1 Update the apt package index and install packages to allow apt to use a repository over HTTPS:
 
 $ sudo apt-get update
 
@@ -59,28 +59,27 @@ In the root directory of the cloned repository, create a Dockerfile
 $ cd Budget-App
 
 $ sudo vim Dockerfile
-{ # Use an official Ruby runtime as a parent image
 FROM ruby:3.1.2
-# Set environment variables
+
 ENV RAILS_ENV=development
 ENV RACK_ENV=development
-# Install dependencies
+
 RUN apt-get update -qq && apt-get install -y nodejs postgresql-client
-# Set the working directory
+
 WORKDIR /app
-# Copy the Gemfile and Gemfile.lock
+
 COPY Gemfile /app/Gemfile
 COPY Gemfile.lock /app/Gemfile.lock
-# Install the gems
+
 RUN bundle install
-# Copy the rest of the application code
+
 COPY . /app
-# Precompile assets (optional, only needed if you have assets)
-# RUN bundle exec rake assets:precompile
-# Expose port 3000 to the Docker host
+
+RUN bundle exec rake assets:precompile
+
 EXPOSE 3000
-# Start the main process
-CMD ["rails", "server", "-b", "0.0.0.0"] }
+
+CMD ["rails", "server", "-b", "0.0.0.0"] 
 
 # Step 4: Create the Docker Compose File
 In the same root directory, create a docker-compose.yml
